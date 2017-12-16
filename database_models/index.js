@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 
 const Users = require('./users/user_model');
-mongoose.Promise = global.Promise;
 
 module.exports = function initDB() {
   console.log('setting up database ...');
-  mongoose.connect('mongodb://localhost:27017/js_quizzes');
+  mongoose.Promise = global.Promise;
+  mongoose.connect('mongodb://localhost:27017/js_quizzes', { useMongoClient: true }); 
   const db = mongoose.connection;
 
   db.on('error', () => {
